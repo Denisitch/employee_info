@@ -5,7 +5,7 @@ Base = declarative_base()
 
 
 class Employee(Base):
-    __tablename__ = 'employee'
+    __tablename__ = "employee"
 
     id = sa.Column(sa.Integer, primary_key=True)
     first_name = sa.Column(sa.String)

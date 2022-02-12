@@ -6,10 +6,10 @@ from pydantic import BaseModel
 
 
 class EmployeePosition(str, Enum):
-    MANAGER = 'manager'
-    ENGINEER = 'engineer'
-    DEVELOPER = 'developer'
-    DIRECTOR = 'director'
+    MANAGER = "manager"
+    ENGINEER = "engineer"
+    DEVELOPER = "developer"
+    DIRECTOR = "director"
 
 
 class EmployeeBase(BaseModel):

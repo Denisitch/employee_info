@@ -13,17 +13,14 @@ class EmployeeService:
         self.session = session
 
     def _get(self, employee_id: int) -> tables.Employee:
-        employee = (
-            self.session
-            .query(tables.Employee)
-            .filter_by(id=employee_id)
-            .first()
-        )
+        employee = self.session.query(tables.Employee).filter_by(id=employee_id).first()
         if not employee:
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
         return employee
 
-    def get_list(self, position: Optional[EmployeePosition] = None) -> List[tables.Employee]:
+    def get_list(
+        self, position: Optional[EmployeePosition] = None
+    ) -> List[tables.Employee]:
         query = self.session.query(tables.Employee)
         if position:
             query = query.filter_by(position=position)
@@ -39,7 +36,9 @@ class EmployeeService:
         self.session.commit()
         return employee
 
-    def update(self, employee_id: int, employee_data: EmployeeUpdate) -> tables.Employee:
+    def update(
+        self, employee_id: int, employee_data: EmployeeUpdate
+    ) -> tables.Employee:
         employee = self._get(employee_id)
         for field, value in employee_data:
             setattr(employee, field, value)
